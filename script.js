@@ -1,7 +1,7 @@
 // Hiệu ứng tim bay nền
 function createFloatingHearts() {
 	const bgHearts = document.querySelector(".bg-hearts");
-	const numberOfHearts = 12;
+	const numberOfHearts = 30;
 	bgHearts.innerHTML = "";
 	for (let i = 0; i < numberOfHearts; i++) {
 		const heart = document.createElement("div");
