@@ -1,0 +1,273 @@
+/* Vô hiệu hoá bôi đen trên toàn trang */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body {
+	background: linear-gradient(135deg, #ffdee9, #b5fffc);
+	font-family: "Montserrat", sans-serif;
+	overflow: hidden;
+	animation: gradientShift 10s ease infinite;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@keyframes gradientShift {
+	0% {
+		background: linear-gradient(135deg, #ffdee9, #b5fffc);
+	}
+	50% {
+		background: linear-gradient(135deg, #b5fffc, #ffb6c1);
+	}
+	100% {
+		background: linear-gradient(135deg, #ffdee9, #b5fffc);
+	}
+}
+
+.container {
+	position: relative;
+	width: 90%;
+	max-width: 600px;
+	background: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	padding: 2.5rem;
+	text-align: center;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+	animation: containerFloat 3s ease-in-out infinite;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes containerFloat {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+h1 {
+	color: #e91e63;
+	font-family: "Pacifico", cursive;
+	font-size: clamp(1.8rem, 5vw, 2.8rem);
+	margin-bottom: 2rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	animation: fadeInDown 1s ease, glowText 2s ease-in-out infinite;
+	font-weight: normal;
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes glowText {
+	0%,
+	100% {
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	}
+	50% {
+		text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+	}
+}
+
+.message {
+	font-size: clamp(1.1rem, 3vw, 1.3rem);
+	color: #333;
+	margin-bottom: 2.5rem;
+	line-height: 1.8;
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.btn-container {
+	display: flex;
+	gap: 1.5rem;
+	justify-content: center;
+	flex-wrap: wrap;
+	position: relative;
+}
+
+.btn {
+	padding: 15px 35px;
+	font-size: clamp(1rem, 2.5vw, 1.2rem);
+	border: none;
+	border-radius: 25px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+	font-weight: 600;
+	font-family: "Montserrat", sans-serif;
+}
+
+.btn::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+	width: 300px;
+	height: 300px;
+}
+
+.btn-yes {
+	background: linear-gradient(45deg, #e91e63, #ff69b4);
+	color: white;
+	box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+}
+
+.btn-yes:hover {
+	transform: scale(1.05);
+}
+
+.btn-no {
+	background: linear-gradient(45deg, #ffcdd2, #ffb6c1);
+	color: #444;
+}
+
+.falling-element {
+	position: fixed;
+	z-index: 1;
+	pointer-events: none;
+	animation: fall linear forwards;
+	top: -50px;
+}
+
+@keyframes fall {
+	0% {
+		transform: translateY(-10vh) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(110vh) rotate(360deg);
+		opacity: 0;
+	}
+}
+
+.bg-hearts {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.floating-heart {
+	position: absolute;
+	color: rgba(233, 30, 99, 0.2);
+	animation: float-heart infinite linear;
+}
+
+@keyframes float-heart {
+	0% {
+		transform: translateY(100vh) scale(0.5);
+		opacity: 0;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		transform: translateY(-10vh) scale(1.5);
+		opacity: 0;
+	}
+}
+
+/* Modal thông báo */
+.success-message,
+.reject-message {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(255, 255, 255, 0.95);
+	padding: 2.5rem;
+	border-radius: 20px;
+	box-shadow: 0 0 30px rgba(233, 30, 99, 0.2);
+	z-index: 100;
+	animation: scaleIn 0.5s ease-out;
+	text-align: center;
+	max-width: 90%;
+	font-family: "Montserrat", sans-serif;
+}
+
+.success-message h2,
+.reject-message h2 {
+	color: #e91e63;
+	margin-bottom: 1rem;
+	font-family: "Pacifico", cursive;
+	font-size: 2rem;
+}
+
+.reject-message p {
+	margin-bottom: 1.5rem;
+}
+
+.reject-message button {
+	padding: 10px 20px;
+	font-size: 1rem;
+	border: none;
+	border-radius: 20px;
+	background-color: #6c757d;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.reject-message button:hover {
+	background-color: #5a6268;
+}
+
+@keyframes scaleIn {
+	0% {
+		transform: translate(-50%, -50%) scale(0);
+		opacity: 0;
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 480px) {
+	.container {
+		padding: 1.5rem;
+		width: 95%;
+	}
+	.btn {
+		padding: 12px 24px;
+		width: 80%;
+	}
+	.btn-container {
+		flex-direction: column;
+		align-items: center;
+	}
+}

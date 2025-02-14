@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Valentine Dành Cho Crush</title>
+		<!-- Liên kết tới file CSS bên ngoài -->
+		<link rel="stylesheet" href="style.css" />
+		<!-- Font từ Google -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="bg-hearts"></div>
+
+		<div class="container" id="mainContainer">
+			<h1>💝 Crush ơi, làm người yêu anh nhé? 💝</h1>
+			<p class="message">
+				Em biết không, anh đã thích em từ rất lâu rồi...<br />
+				Mỗi ngày được nhìn thấy nụ cười của em là một ngày thật hạnh
+				phúc!<br />
+				Em sẽ cho anh cơ hội được ở bên em chứ?
+			</p>
+			<div class="btn-container">
+				<button class="btn btn-yes" id="yesBtn">Đồng ý 💖</button>
+				<button class="btn btn-no" id="noBtn">Từ chối 💔</button>
+			</div>
+		</div>
+
+		<!-- Thông báo khi nhấn "Đồng ý" -->
+		<div class="success-message" id="successMessage">
+			<h2>💑 Cảm ơn em rất nhiều! 💑</h2>
+			<p>Anh hứa sẽ luôn yêu thương và chăm sóc em thật tốt!</p>
+		</div>
+
+		<!-- Thông báo khi nhấn "Từ chối" -->
+		<div class="reject-message" id="rejectMessage">
+			<h2>🥺 Em đã từ chối anh rồi... 🥺</h2>
+			<p>Nhưng không sao, anh vẫn sẽ tôn trọng quyết định của em.</p>
+			<button id="backBtn">Cho anh cơ hội suy nghĩ lại nhé 🥺</button>
+		</div>
+
+		<!-- Liên kết tới file JS bên ngoài -->
+		<script src="script.js" defer></script>
+	</body>
+</html>
