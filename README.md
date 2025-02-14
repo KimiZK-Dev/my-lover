@@ -35,7 +35,7 @@
 3. **Chọn nhánh `main` và lưu lại**
 4. **Truy cập đường dẫn:**
     ```
-    https://KimiZK-Dev.github.io/valentine-crush/
+    https://[USERNAME GIT CỦA BẠN].github.io/valentine-crush/
     ```
 
 ## 🔧 **Công Nghệ Sử Dụng**
