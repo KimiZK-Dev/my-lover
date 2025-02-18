@@ -10,25 +10,31 @@
 }
 
 body {
-	background: linear-gradient(135deg, #ffdee9, #b5fffc);
+	background: linear-gradient(-45deg, #ffdee9, #b5fffc, #ffb6c1, #f8c291);
+	background-size: 200% 200%;
 	font-family: "Montserrat", sans-serif;
-	overflow: hidden;
-	animation: gradientShift 10s ease infinite;
 	min-height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	animation: gradientShift 12s linear infinite;
 }
 
 @keyframes gradientShift {
 	0% {
-		background: linear-gradient(135deg, #ffdee9, #b5fffc);
+		background-position: 0% 50%;
+	}
+	25% {
+		background-position: 50% 100%;
 	}
 	50% {
-		background: linear-gradient(135deg, #b5fffc, #ffb6c1);
+		background-position: 100% 50%;
+	}
+	75% {
+		background-position: 50% 0%;
 	}
 	100% {
-		background: linear-gradient(135deg, #ffdee9, #b5fffc);
+		background-position: 0% 50%;
 	}
 }
 
@@ -45,6 +51,19 @@ body {
 	z-index: 10;
 	animation: containerFloat 3s ease-in-out infinite;
 	border: 1px solid rgba(255, 255, 255, 0.3);
+	margin: auto;
+}
+
+.gif {
+	/* Sử dụng clamp để điều chỉnh kích thước linh hoạt */
+	width: clamp(150px, 40%, 200px);
+	margin: 0 auto;
+}
+
+.gif img {
+	width: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 @keyframes containerFloat {
@@ -181,26 +200,28 @@ h1 {
 }
 
 .floating-heart {
-	position: absolute;
-	color: rgba(233, 30, 99, 0.2);
-	animation: float-heart infinite linear;
+	position: fixed;
+	bottom: -10px; /* Xuất phát từ dưới cùng trang */
+	animation: float-heart linear forwards;
+	color: rgba(233, 30, 99, 0.8);
+	opacity: 0;
 }
 
 @keyframes float-heart {
 	0% {
-		transform: translateY(100vh) scale(0.5);
+		transform: translateY(0) scale(0.8);
 		opacity: 0;
 	}
-	50% {
-		opacity: 0.5;
+	30% {
+		opacity: 1;
 	}
 	100% {
-		transform: translateY(-10vh) scale(1.5);
+		transform: translateY(-100vh) scale(1.2);
 		opacity: 0;
 	}
 }
 
-/* Modal thông báo */
+/* Modal thông báo cho "Đồng ý" và "Từ chối" */
 .success-message,
 .reject-message {
 	display: none;
@@ -257,6 +278,7 @@ h1 {
 	}
 }
 
+/* Media query cho thiết bị có chiều rộng tối đa 480px */
 @media (max-width: 480px) {
 	.container {
 		padding: 1.5rem;
@@ -269,5 +291,53 @@ h1 {
 	.btn-container {
 		flex-direction: column;
 		align-items: center;
+	}
+	.gif {
+		width: 150px;
+	}
+}
+
+/* Media query riêng cho các thiết bị màn hình siêu nhỏ như iPhone SE (max-width: 375px) */
+@media (max-width: 375px) {
+	.container {
+		padding: 1rem;
+		width: 95%;
+	}
+	h1 {
+		font-size: clamp(1.5rem, 5vw, 2.2rem);
+	}
+	.message {
+		font-size: clamp(1rem, 3vw, 1.1rem);
+	}
+	.gif {
+		width: 120px;
+	}
+	.btn {
+		padding: 10px 20px;
+		font-size: clamp(0.9rem, 2.5vw, 1rem);
+		width: 90%;
+	}
+	.btn-container {
+		gap: 1rem;
+	}
+	/* Điều chỉnh kích thước modal cho phù hợp */
+	.success-message,
+	.reject-message {
+		padding: 1.5rem;
+		font-size: 0.9rem;
+	}
+	.success-message h2,
+	.reject-message h2 {
+		font-size: 1.5rem;
+	}
+	/* Điều chỉnh ảnh trong modal nếu cần */
+	.success-message .gif,
+	.reject-message .gif {
+		width: 100px;
+		margin: 0 auto 1rem;
+	}
+	.reject-message button {
+		padding: 8px 16px;
+		font-size: 0.9rem;
 	}
 }

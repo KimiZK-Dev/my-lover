@@ -1,20 +1,24 @@
 // Hiệu ứng tim bay nền
-function createFloatingHearts() {
-	const bgHearts = document.querySelector(".bg-hearts");
-	const numberOfHearts = 30;
-	bgHearts.innerHTML = "";
-	for (let i = 0; i < numberOfHearts; i++) {
-		const heart = document.createElement("div");
-		heart.innerHTML = "❤️";
-		heart.classList.add("floating-heart");
-		heart.style.left = `${Math.random() * 100}%`;
-		heart.style.animationDuration = `${Math.random() * 3 + 4}s`;
-		heart.style.fontSize = `${Math.random() * 20 + 10}px`;
-		bgHearts.appendChild(heart);
-	}
+// Tạo hiệu ứng trái tim bay lên
+function createFloatingHeart() {
+	const heart = document.createElement("div");
+	heart.innerHTML = "❤️";
+	heart.classList.add("floating-heart");
+
+	// Ngẫu nhiên vị trí xuất phát
+	heart.style.left = Math.random() * 100 + "vw";
+	heart.style.bottom = "-10px"; // Bắt đầu từ dưới cùng trang
+	heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+	heart.style.animationDuration = `${Math.random() * 3 + 5}s`;
+
+	document.body.appendChild(heart);
+
+	// Xóa trái tim khi animation kết thúc
+	heart.addEventListener("animationend", () => heart.remove());
 }
-createFloatingHearts();
-setInterval(createFloatingHearts, 4000);
+
+// Liên tục tạo hiệu ứng trái tim bay lên
+setInterval(createFloatingHeart, 300);
 
 // Hiệu ứng icon rơi khi nhấn "Đồng ý"
 function createFallingElement() {
